@@ -1,0 +1,61 @@
+This is a three pointer approach.
+
+Time complexity-O(n)
+Space complexity-O(1)
+
+#include<bits/stdc++.h>
+using namespace std;
+void sort012(int[],int);
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >>n;
+        int a[n];
+        for(int i=0;i<n;i++){
+            cin >> a[i];
+        }
+
+        sort012(a, n);
+
+        for(int i=0;i<n;i++){
+            cout << a[i]  << " ";
+        }
+
+        cout << endl;
+        
+        
+    }
+    return 0;
+}
+
+// } Driver Code Ends
+
+
+void sort012(int a[], int n)
+{
+    // coode here 
+    int zp=0,op=0,tp=n-1;
+    while(op<=tp){
+        switch (a[op]){
+            case 0:
+                swap(a[zp],a[op]);
+                zp++;
+                op++;
+                break;
+            case 1:
+                op++;
+                break;
+            case 2:
+                swap(a[op],a[tp]);
+                tp--;
+                break;
+            default:
+                break;
+        }
+    }
+}
