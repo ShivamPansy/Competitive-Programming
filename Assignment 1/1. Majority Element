@@ -1,0 +1,81 @@
+Majority element are the elements whose frequencty is greater than half the size of array. 
+So suppose if size of an array is 8, then majority element will be element whose frequency will be more than or equal to 5.
+
+This Program returns the number that is majority element.
+
+Input={1,2,1,3,1,1}
+Output=1
+
+
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+// Function to find majority element in the array
+// a: input array
+// size: size of input array
+int majorityElement(int a[], int size)
+{
+    
+    // your code here
+    int startIndex=0,count=1;
+    for(int i=1;i<size;i++){
+        if(a[i]==a[startIndex]){
+            count++;
+        }
+        else{
+            count--;
+        }
+        if(count==0){
+            startIndex=i;
+            count=1;
+        }
+    }
+    int freq=0;
+    for(int i=0;i<size;i++){
+        if(a[i]==a[startIndex]){
+            freq++;
+        }
+    }
+    if(freq>size/2){
+        return a[startIndex];
+    }
+    else{
+        return -1;
+    }
+    
+    
+}
+
+// { Driver Code Starts.
+
+int main(){
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >> n;
+        int arr[n];
+        
+        for(int i = 0;i<n;i++){
+            cin >> arr[i];
+        }
+        
+        cout << majorityElement(arr, n) << endl;
+    }
+
+    return 0;
+}
+  // } Driver Code Ends
+  
+  
+  
+  
+  Time Complexity= O(n)
+  Space Complexity=O(1)
