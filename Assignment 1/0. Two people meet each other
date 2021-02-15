@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool meet(int x1,int x2,int v1,int v2){
+    if(x1<x2 && v1<v2){
+        return false;
+    }
+    if(x1>x2 && v1>v2){
+        return false;
+    }
+    return (abs(x1-x2)%abs(v1-v2)==0);
+}
+int main(){
+    int x1=6,x2=4,v1=6,v2=8;
+    bool result=meet(x1,x2,v1,v2);
+    if(result){
+        cout<<"yes";
+        
+    }else{
+        cout<<"No";
+    }
+}
+
+
+
+Time Complexity= O(1)
+Space Complexity= O(1)
+
+This program uses relative speed formula to find if the two person will meet or not.
