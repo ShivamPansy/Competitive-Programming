@@ -1,0 +1,45 @@
+Time complexity=O(log n)
+Space complexity=O(1)
+
+
+// { Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+class Solution
+{
+public:
+int countTrailZero(int n,int count){
+    if(n<5){
+        return count;
+    }
+    return countTrailZero(n/5,count+(n/5));
+}
+    int trailingZeroes(int N)
+    {
+        // Write Your Code here
+        
+        int x=countTrailZero(N,0);
+        return x;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int N;
+        cin >> N;
+        Solution ob;
+        int ans  = ob.trailingZeroes(N);
+        cout<<ans<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
