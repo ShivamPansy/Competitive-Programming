@@ -1,0 +1,57 @@
+This code gives error on geeksforgeeks site when it was written because they have an error in their driver code. They have taken testcases "t" as an input in driver code 
+but not in their question.
+
+This is recursion method of finding rightmost non-zero digit in the product of elements.
+
+// { Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+
+
+class Solution{   
+public:
+    int lastDigit(long long pro,int x){
+        
+        if(x!=0){
+            return x;
+        }
+        
+        return lastDigit((pro/10),(pro%10));
+    }
+    
+    int rightmostNonZeroDigit(int N, long long A[]){
+        // code here 
+        int res;
+        long long pro=1;
+        
+        for(int i=0;i<N;i++){
+            
+            pro=pro*A[i];
+        }
+
+        
+        res=lastDigit(pro,0);
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        long long A[n];
+        for(int i=0;i<n;++i){
+            cin>>A[i];
+        }
+        Solution ob;
+        cout << ob.rightmostNonZeroDigit(n, A) << endl;
+    }
+    return 0; 
+}   // } Driver Code Ends
