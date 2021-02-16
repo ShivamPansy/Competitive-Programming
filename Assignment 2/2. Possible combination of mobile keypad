@@ -1,0 +1,42 @@
+Recursion and backtracking
+
+This is the function that return the possible combination of alphabets from given mobile digits.
+
+Input := Mobile digits along with the associated alphabets.
+Output :- print the combination of letters from the given digits
+
+Example:-
+Input:-  "23"
+Output:- {"ad","ae","af","bd","be","bf","cd","ce",""cf}
+
+class Solution {
+public:
+    vector<string> keypad={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    
+    void generatePossibleCombination(vector<string>&result,string digit,int index,string str){
+        if(index==digit.size()){
+            result.push_back(str);
+            return;
+        }
+        
+        string formation = keypad[digit[index]-'0'];
+        for(int i=0;i<formation.size();i++){
+            str.push_back(formation[i]);
+            generatePossibleCombination(result,digit,index+1,str);
+            str.pop_back();
+        }
+        
+    }
+    
+    
+    vector<string> letterCombinations(string digits) {
+        vector<string>result;
+        if(digits.size()==0){
+            return vector<string>{};
+        }
+        
+        generatePossibleCombination(result,digits,0,"");
+            
+        return result;
+    }
+};
