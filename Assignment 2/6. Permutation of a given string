@@ -1,25 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void perHelper(vector<string>&res,string s,int st,int e){
-    if(st>=e){
-        res.push_back(s);
+void perHelper(string s,int st,int e){
+    if(st==e){
+        cout<<s<<" ";
         return;
     }
     
     
-    for(int i=st;i<=e;i++){
+    for(int i=st;i<e;i++){
         swap(s[i],s[st]);
-        perHelper(res,s,st+1,e);
-        swap(s[i],s[st]);
+        perHelper(s,st+1,e);
     }
 }
 
-vector<string> generatePermutation(string s){
+void generatePermutation(string s){
     sort(s.begin(),s.end());
-    vector<string>res;
-    perHelper(res,s,0,s.length()-1);
-    return res;
+    
+    perHelper(s,0,s.length());
+    
     
 }
 
@@ -30,11 +29,7 @@ int main() {
 	while(t--){
 	    string s;
 	    cin>>s;
-	    vector<string>res=generatePermutation(s);
-	    for(string x :res){
-	        cout<<x<<" ";
-	        
-	    }
+	    generatePermutation(s);
 	    cout<<"\n";
 	}
 	return 0;
