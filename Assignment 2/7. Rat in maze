@@ -1,0 +1,69 @@
+// { Driver Code Starts
+// Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 5
+vector<string> findPath(int m[MAX][MAX], int n);
+
+// Position this line where user code will be pasted.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+
+        int m[MAX][MAX];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> m[i][j];
+            }
+        }
+
+        vector<string> result = findPath(m, n);
+        if (result.size() == 0)
+            cout << -1;
+        else
+            for (int i = 0; i < result.size(); i++) cout << result[i] << " ";
+        cout << endl;
+    }
+    return 0;
+}// } Driver Code Ends
+
+
+// User function template for C++
+
+// m is the given matrix and n is the order of matrix
+// MAX is the upper limit of N ie 5
+
+
+void pathHelper(vector<string>&res,int m[MAX][MAX],int r,int c,int n,string str){
+    if(r<0 || c<0|| r>n-1|| c>n-1 || m[r][c]==0 || m[r][c]==-1){
+        return;
+    }
+    if(r==n-1 && c ==n-1){
+        res.push_back(str);
+        return;
+    }
+
+        m[r][c]=-1;
+    
+    
+        pathHelper(res,m,r+1,c,n,str+"D");
+        pathHelper(res,m,r-1,c,n,str+"U");
+        pathHelper(res,m,r,c+1,n,str+"R");
+        pathHelper(res,m,r,c-1,n,str+"L");
+         m[r][c]=1;
+}
+vector<string> findPath(int m[MAX][MAX], int n) {
+    // Your code goes here
+    
+    
+    vector<string>res;
+    pathHelper(res,m,0,0,n,"");
+    sort(res.begin(),res.end());
+    return res;
+}
