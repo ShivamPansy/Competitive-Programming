@@ -1,0 +1,24 @@
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
+    if(a==NULL){
+		return b;
+	}
+	else if(b==NULL){
+		return a;
+	}
+	
+	ListNode dummy;
+	ListNode *result = &dummy,*ptr=a,*qtr=b;
+	int sum=0,carry=0;
+	while(ptr != NULL || qtr != NULL){
+		sum=carry+(ptr != NULL ? ptr->val :0)+(qtr != NULL ? qtr->val :0);
+		carry=sum/10;
+		sum=sum%10;
+		result->next=new ListNode(sum);
+		
+	}
+	return result;
+        
+    }
+};
