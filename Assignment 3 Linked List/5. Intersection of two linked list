@@ -16,3 +16,60 @@ ListNode* A = headA;
                 B = headA;
         }
        return A; 
+
+
+
+
+Second Approach:-
+
+Counting
+
+class Solution {
+public:
+            ListNode *intHelper(ListNode *headA,ListNode *headB,int d){
+                for(int i=0;i<d;i++){
+
+                    if(headA==NULL){
+                        return NULL;
+                    }
+                    headA=headA->next;
+                }
+            while(headA!=NULL && headB!=NULL){
+                if(headA==headB){
+                    return headA;
+                }
+                headA=headA->next;
+                headB=headB->next;
+
+            }
+            return headA;
+        }
+      
+        ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+
+                if(headA==NULL || headB==NULL){
+                    return NULL;
+                }
+
+                ListNode *curr1=headA,*curr2=headB;
+                int c1=0,c2=0;
+                while(curr1!=NULL && curr1->next !=NULL){
+                    c1=c1+1;
+                    curr1=curr1->next;
+                }
+                while(curr2!=NULL && curr2->next!=NULL){
+                    c2=c2+1;
+                    curr2=curr2->next;
+                }
+                int d=0;
+
+                    if(c1>c2){
+                        d=abs(c1-c2);
+                        return intHelper(headA,headB, d);
+                    }
+                    else{
+                        d=abs(c2-c1);
+                        return intHelper(headB,headA,d);
+                    }
+           }
+};
