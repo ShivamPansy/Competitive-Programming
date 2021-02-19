@@ -1,0 +1,47 @@
+Node* cutInHalf(Node *head){
+	Node *slow=head;
+	Node *fast=head;
+	while(slow!=NULL && fast!=NULL && fast->next!=NULL){
+		slow->next;
+		fast=fast->next->next;
+		
+	}
+	Node *middle=slow->next;
+	slow->next=NULL;
+	return middle;
+}
+
+Node * reverse(Node *head){
+	if(head==NULL || head->next==NNULL){
+		return head;
+	}
+	Node *curr=head,*next=head;
+	
+}
+
+Node* alternatemerge(Node *a,Node *b){
+	if(a==Null){
+		return b;
+	}else if(b==NULL){
+		return a;
+	}else{
+		while(a!=NULL && b!=NULL){
+			p=a->next;
+			q=b->next;
+			a->next=b;
+			a=p;
+			b->next=a;
+			b=q;
+		}
+	}
+}
+Node* reorderLL(Node *head){
+	if(head==NULL) || head->next ==NULL{
+		return head;
+	}
+	//cut in half
+	Node *second = cutInHalf(head);
+	second=reverse(second);
+	//alternate merge
+	alternateMerge(head,second);
+}
