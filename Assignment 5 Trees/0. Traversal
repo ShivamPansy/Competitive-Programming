@@ -1,0 +1,63 @@
+Preorder:- Root, left, right
+
+void Preorder(TreeNode *root){
+	if(root!=NULL){
+		cout<<root->data;
+	}
+	Preorder(root->left);
+	Preorder(root->right);
+}
+
+
+Inorder:- Left, Root, Right
+
+void Inorder(TreeNode *root){
+	
+	Inorder(root->left);
+	if(root!=NULL){
+		cout<<root->data;
+	}
+	Inorder(root->right);
+	
+}
+
+
+
+
+Postorder:- Left, Right, Root
+
+void Postorder(TreeNode *root){
+	
+	Postorder(root->left);
+	Postorder(root->right);
+	if(root!=NULL){
+		cout<<root->data;
+	}
+}
+
+
+Level order traversal:- 
+
+void printGiven(TreeNode *root,int level){
+	if(root==NULL){
+		return;
+	}
+	if(level==1){
+		cout<<root->data;
+	}else if(level>1){
+		printGiven(root->left,level-1);
+		printGiven(root->right,level-1);
+	}
+}
+void Levelorder(TreeNode *root){
+	if(root==NULL){
+		return;
+	}
+	int levels=height(root);
+	for(int level=1;level<levels;level++){
+		printGiven(root,level);
+	}
+}
+
+
+
