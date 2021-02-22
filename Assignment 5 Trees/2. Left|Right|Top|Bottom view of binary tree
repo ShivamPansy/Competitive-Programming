@@ -1,0 +1,50 @@
+Left:-
+
+class Solution {
+public:
+    int maxlevel=0;
+    vector<int>res;
+    void findBottom(TreeNode* root,int level){
+        if(root==NULL){
+            
+            return;
+        }
+        if(maxlevel<level){
+            res.push_back(root->val);
+            maxlevel=level;
+        }
+        findBottom(root->left,level+1);
+        findBottom(root->right,level+1);
+    }
+    vector<int> findBottomLeftValue(TreeNode* root) {
+        
+        findBottom(root,1);
+        return res;
+    }
+};
+
+
+Right:-
+
+class Solution {
+public:
+    int maxlevel=0;
+    vector<int>res;
+    void RV(TreeNode* root,int level){
+        if(root==NULL){
+            return;
+        }
+        if(maxlevel<level){
+            res.push_back(root->val);
+            maxlevel=level;
+        }
+        RV(root->right,level+1);
+        RV(root->left,level+1);
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        RV(root,1);
+        return res;
+    }
+};
+
+
