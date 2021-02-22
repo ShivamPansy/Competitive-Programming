@@ -1,0 +1,27 @@
+bool isLeaf(Node *root){
+	return (root->left==NULL && root->right==NULL);
+}
+
+
+
+
+int leafToLeafBinaryTree(TreeNode *root,int &maxSum){
+	if(root==NULL){
+		*maxSum=0;
+		return 0;
+	}
+	if(isLeaf(root)){
+		*maxSum=0;
+		return root->data;
+	}
+	int rs=0,ls=0;
+	int ls=sumofBinaryTree(root->left,&lhs);
+	int rs=sumOfBinaryTree(root->right,&rhs);
+	
+	if(root->left!=NULL && root->right!=NULL){
+		*sum=max(*sum,lh+rh+root->data);
+		return max(lh,rh)+root->data;
+	}
+	
+	return max(ls,rs);
+}
