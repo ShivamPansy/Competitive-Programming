@@ -1,0 +1,34 @@
+int *mergeKArrays(int arr[][n], int k)
+{
+    int *output = new int[n*k];  
+ 
+    MinHeapNode *harr = new MinHeapNode[k];
+    for (int i = 0; i < k; i++)
+    {
+ 
+        harr[i].element = arr[i][0]; 
+ 
+        harr[i].i = i;
+ 
+        harr[i].j = 1; 
+    }
+ 
+
+    MinHeap hp(harr, k); 
+    for (int count = 0; count < n*k; count++)
+    {
+        MinHeapNode root = hp.getMin();
+        output[count] = root.element;
+ 
+        if (root.j < n)
+        {
+            root.element = arr[root.i][root.j];
+            root.j += 1;
+        }        
+        else root.element =  INT_MAX; 
+ 
+        hp.replaceMin(root);
+    }
+ 
+    return output;
+}
