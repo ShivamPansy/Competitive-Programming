@@ -15,11 +15,7 @@ node* constructTreeUtil(int pre[], int* preIndex, int low,
         if (pre[i] > root->data)
             break;
  
-    root->left = constructTreeUtil(pre, 
-                                   preIndex, 
-                                   *preIndex,
-                                   i - 1, 
-                                   size);
+    root->left = constructTreeUtil(pre, preIndex,*preIndex,i - 1,size);
     root->right
         = constructTreeUtil(pre, preIndex, i, high, size);
  
