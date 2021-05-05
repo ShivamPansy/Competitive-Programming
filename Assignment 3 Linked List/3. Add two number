@@ -1,24 +1,76 @@
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
-    if(a==NULL){
-		return b;
-	}
-	else if(b==NULL){
-		return a;
-	}
-	
-	ListNode dummy;
-	ListNode *result = &dummy,*ptr=a,*qtr=b;
-	int sum=0,carry=0;
-	while(ptr != NULL || qtr != NULL){
-		sum=carry+(ptr != NULL ? ptr->val :0)+(qtr != NULL ? qtr->val :0);
-		carry=sum/10;
-		sum=sum%10;
-		result->next=new ListNode(sum);
-		
-	}
-	return result;
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+     
+        ListNode *curr1=l1;
+        ListNode *curr2=l2;
+        ListNode *prev;
+        int sum=0,carry=0;
+        if(l1 == NULL && l2 ==NULL){
+            return l1;
+        }
+        else if(l1==NULL){
+            return l2;
+        }
+        else if(l2==NULL){
+            return l1;
+        }
+        
+        
+        int m=0,n=0;
+        while(curr1->next!=NULL){
+            curr1=curr1->next;
+            m++;
+        }
+        while(curr2->next!=NULL){
+            curr2=curr2->next;
+            n++;
+        }
+        
+        curr1=l1;
+        curr2=l2;
+        while(curr1!=NULL || curr2!=NULL){
+            int val1=0,val2=0;
+            
+            sum=carry+(curr1==NULL?0:curr1->val)+(curr2==NULL?0:curr2->val);
+            carry=sum/10;
+            
+            if(m>n){
+                curr1->val=sum%10;
+                prev=curr1;
+            }else{
+                curr2->val=sum%10;
+                prev=curr2;
+            }
+            
+            if(curr1==NULL){
+                curr2=curr2->next;
+            }
+            else if(curr2 == NULL){
+                curr1=curr1->next;
+            }
+            else{
+                curr1=curr1->next;
+                curr2=curr2->next;
+            }
+            
+            
+        }
+        if(carry!=0){
+            if(m>n){
+                ListNode *temp=new ListNode(carry,NULL);
+                prev->next=temp;
+                return l1;
+            }
+            else{
+                ListNode *temp=new ListNode(carry,NULL);
+                prev->next=temp;
+                return l2;
+            }
+        }
+        return m>n?l1:l2;
+
+
         
     }
 };
